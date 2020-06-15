@@ -7,12 +7,19 @@ Please fill out:
 * Scheduled project review date/time: Saturday 06/13/2020 at 4:00 pm
 * Instructor name: James Irving
 * Blog post URL: https://cristinamtown.github.io/
+* Slide presentation URL: https://docs.google.com/presentation/d/1Kjw2kpy96bOTcg3aOC2l4hrhtdHR3a6XUoNbX6S6E6U/edit#slide=id.g887fc628c9_0_456
 
 
-## Question I aim to answer:
+## Why should Microsoft enter the Film Industry?
+
+Movies are a multi-billion dollar industry that Microsoft can take part in to expand their products and thus their profits. In this notebook we will look to answer the following questions in order to help Microsoft enter the industry in such a way it is profitable and they are seen as a legitimate player:
+
 1. Which types of movies have biggest box office gross profit?
+
 2. Which types movies are most likely have people take Microsoft seriously as content creators?
+
 4. Home release vs. theatrical release?
+
 
 
 ```python
@@ -2146,9 +2153,11 @@ df_top20
 # Make horizontal 
 ax_top20 = sns.barplot(y='movie', x='worldwide_gross', orient='h', data=df_top20)
 ax_top20.set_title('Top 20 Grossing Films')
-# ax_top20.set_xticklabels(df_top20['movie']) #, rotation=45, ha='right')
 ax_top20.set_ylabel('Movie Title')
-ax_top20.set_xlabel('Worldwide Gross (in Billions)');
+ax_top20.set_xlabel('Worldwide Gross (in Billions)')
+
+# Save image as png
+plt.savefig('plots/bo_top_20.png', transparent=True, bbox_inches='tight');
 ```
 
 
@@ -3503,29 +3512,29 @@ genres_list
 
 
 
-    ['Mystery',
-     'Animation',
-     'Romance',
-     'Biography',
-     'Comedy',
-     'Horror',
-     'Sci-Fi',
-     'Family',
-     'Sport',
-     'Thriller',
-     'Western',
+    ['Romance',
      'Documentary',
-     'Music',
-     'Adventure',
+     'Crime',
+     'Horror',
+     'Biography',
      'Action',
+     'History',
+     'No genre given',
+     'Adventure',
+     'Family',
+     'Musical',
+     'Music',
+     'News',
      'Drama',
      'Fantasy',
-     'Musical',
-     'No genre given',
-     'History',
+     'Animation',
+     'Thriller',
+     'Sci-Fi',
+     'Comedy',
      'War',
-     'News',
-     'Crime']
+     'Mystery',
+     'Sport',
+     'Western']
 
 
 
@@ -3604,16 +3613,16 @@ df_gross_genre.head()
       <th>original_title</th>
       <th>start_year</th>
       <th>...</th>
-      <th>Adventure</th>
-      <th>Action</th>
       <th>Drama</th>
       <th>Fantasy</th>
-      <th>Musical</th>
-      <th>No genre given</th>
-      <th>History</th>
+      <th>Animation</th>
+      <th>Thriller</th>
+      <th>Sci-Fi</th>
+      <th>Comedy</th>
       <th>War</th>
-      <th>News</th>
-      <th>Crime</th>
+      <th>Mystery</th>
+      <th>Sport</th>
+      <th>Western</th>
     </tr>
   </thead>
   <tbody>
@@ -3654,10 +3663,10 @@ df_gross_genre.head()
       <td>Pirates of the Caribbean: On Stranger Tides</td>
       <td>2011</td>
       <td>...</td>
-      <td>True</td>
-      <td>True</td>
       <td>False</td>
       <td>True</td>
+      <td>False</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -3678,11 +3687,11 @@ df_gross_genre.head()
       <td>Dark Phoenix</td>
       <td>2019</td>
       <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
       <td>True</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -3702,11 +3711,11 @@ df_gross_genre.head()
       <td>Avengers: Age of Ultron</td>
       <td>2015</td>
       <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
       <td>True</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -3726,11 +3735,11 @@ df_gross_genre.head()
       <td>Avengers: Infinity War</td>
       <td>2018</td>
       <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
       <td>True</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -3772,33 +3781,7 @@ genre_dict
 
 
 
-    {'Mystery':      index  worldwide_gross
-     0       76      259357408.0
-     1      256      290650494.0
-     2      278      402448265.0
-     3      281      211856088.0
-     4      283      261400000.0
-     ..     ...              ...
-     218   3394        1165996.0
-     219   3417         429448.0
-     220   3419       41656474.0
-     221   3426           8555.0
-     222   3437         489792.0
-     
-     [223 rows x 2 columns], 'Animation':      index  worldwide_gross
-     0       11     5.864772e+08
-     1       44     1.242521e+09
-     2       46     1.021215e+09
-     3       47     1.068880e+09
-     4       53     7.435883e+08
-     ..     ...              ...
-     135   2744     4.182407e+07
-     136   2745     2.127777e+07
-     137   2747     2.127777e+07
-     138   3048     1.392649e+06
-     139   3179     1.849255e+08
-     
-     [140 rows x 2 columns], 'Romance':      index  worldwide_gross
+    {'Romance':      index  worldwide_gross
      0       67     3.510404e+08
      1       68     2.653320e+07
      2      132     1.259200e+09
@@ -3811,120 +3794,7 @@ genre_dict
      343   3420     2.769782e+06
      344   3429     4.241490e+05
      
-     [345 rows x 2 columns], 'Biography':      index  worldwide_gross
-     0      102      854235992.0
-     1      191      532938302.0
-     2      211      385997896.0
-     3      217      385997896.0
-     4      235       44793168.0
-     ..     ...              ...
-     229   3370         830700.0
-     230   3376        8969065.0
-     231   3398           6260.0
-     232   3413          32092.0
-     233   3422          20056.0
-     
-     [234 rows x 2 columns], 'Comedy':      index  worldwide_gross
-     0       11     5.864772e+08
-     1       26     6.542135e+08
-     2       46     1.021215e+09
-     3       47     1.068880e+09
-     4       53     7.435883e+08
-     ..     ...              ...
-     769   3425     3.031200e+04
-     770   3428     4.917000e+03
-     771   3429     4.241490e+05
-     772   3440     1.387110e+05
-     773   3444     4.584000e+03
-     
-     [774 rows x 2 columns], 'Horror':      index  worldwide_gross
-     0        0     2.776345e+09
-     1       66     5.315146e+08
-     2       90     5.295307e+08
-     3      109     7.980081e+08
-     4      167     2.382027e+08
-     ..     ...              ...
-     343   3426     8.555000e+03
-     344   3431     3.632000e+03
-     345   3437     4.897920e+05
-     346   3438     4.897920e+05
-     347   3440     1.387110e+05
-     
-     [348 rows x 2 columns], 'Sci-Fi':      index  worldwide_gross
-     0        2     1.497624e+08
-     1        3     1.403014e+09
-     2        4     2.048134e+09
-     3       10     2.827781e+08
-     4       12     1.140069e+09
-     ..     ...              ...
-     202   3380     1.780950e+05
-     203   3407     2.102779e+06
-     204   3417     4.294480e+05
-     205   3423     8.799000e+03
-     206   3427     8.555000e+03
-     
-     [207 rows x 2 columns], 'Family':      index  worldwide_gross
-     0       14     1.017004e+09
-     1       43     2.208208e+09
-     2       49     1.025491e+09
-     3       54     4.903591e+08
-     4       58     6.522201e+08
-     ..     ...              ...
-     180   3327     1.980000e+04
-     181   3338     4.243996e+06
-     182   3346     4.503490e+05
-     183   3352     8.913400e+04
-     184   3412     3.209200e+04
-     
-     [185 rows x 2 columns], 'Sport':     index  worldwide_gross
-     0     152     8.211334e+08
-     1     153     1.272470e+09
-     2     336     8.768397e+07
-     3     364     1.267046e+08
-     4     365     8.353196e+07
-     ..    ...              ...
-     66   3309     2.047570e+06
-     67   3322     3.144440e+05
-     68   3330     1.980000e+04
-     69   3381     6.766500e+04
-     70   3396     1.626050e+05
-     
-     [71 rows x 2 columns], 'Thriller':      index  worldwide_gross
-     0        6     8.796209e+08
-     1        7     1.084439e+09
-     2       17     1.234846e+09
-     3       30     3.224590e+08
-     4       35     8.474744e+07
-     ..     ...              ...
-     511   3410     3.209200e+04
-     512   3419     4.165647e+07
-     513   3423     8.799000e+03
-     514   3436     1.950430e+05
-     515   3437     4.897920e+05
-     
-     [516 rows x 2 columns], 'Western':     index  worldwide_gross
-     0       9      260002115.0
-     1     347      449948323.0
-     2     418      162525156.0
-     3     616       69688384.0
-     4     785      117211892.0
-     5     955        8514325.0
-     6    1032       18594227.0
-     7    1115      252276928.0
-     8    1207         786532.0
-     9    1572        3771345.0
-     10   1729       55576699.0
-     11   1954        8217571.0
-     12   1961        1686429.0
-     13   2063        5953886.0
-     14   2196       65532576.0
-     15   2652        8446952.0
-     16   2829        1217307.0
-     17   3021         156362.0
-     18   3054          59696.0
-     19   3096        1869928.0
-     20   3236        2684207.0
-     21   3292            450.0, 'Documentary':      index  worldwide_gross
+     [345 rows x 2 columns], 'Documentary':      index  worldwide_gross
      0       50     1.025491e+09
      1       86     1.800478e+08
      2       98     8.542360e+08
@@ -3937,33 +3807,46 @@ genre_dict
      439   3430     8.374000e+03
      440   3435     3.547000e+03
      
-     [441 rows x 2 columns], 'Music':      index  worldwide_gross
-     0       51     1.025491e+09
-     1      133     1.259200e+09
-     2      134     1.259200e+09
-     3      136     6.084311e+08
-     4      137     6.084311e+08
+     [441 rows x 2 columns], 'Crime':      index  worldwide_gross
+     0       17     1.234846e+09
+     1       64     1.518723e+09
+     2       97     8.542360e+08
+     3      270     6.301635e+08
+     4      273     5.356634e+08
      ..     ...              ...
-     105   3314     3.087930e+05
-     106   3366     1.711000e+03
-     107   3386     3.234000e+03
-     108   3409     1.692420e+05
-     109   3422     2.005600e+04
+     357   3348     4.370020e+05
+     358   3355     4.445200e+04
+     359   3370     8.307000e+05
+     360   3403     1.577585e+06
+     361   3421     5.942400e+04
      
-     [110 rows x 2 columns], 'Adventure':      index  worldwide_gross
-     0        1     1.045664e+09
-     1        2     1.497624e+08
-     2        3     1.403014e+09
-     3        4     2.048134e+09
-     4        5     6.559452e+08
+     [362 rows x 2 columns], 'Horror':      index  worldwide_gross
+     0        0     2.776345e+09
+     1       66     5.315146e+08
+     2       90     5.295307e+08
+     3      109     7.980081e+08
+     4      167     2.382027e+08
      ..     ...              ...
-     455   3270     6.188421e+06
-     456   3280     4.426380e+05
-     457   3289     4.500000e+02
-     458   3326     1.980000e+04
-     459   3336     1.778000e+03
+     343   3426     8.555000e+03
+     344   3431     3.632000e+03
+     345   3437     4.897920e+05
+     346   3438     4.897920e+05
+     347   3440     1.387110e+05
      
-     [460 rows x 2 columns], 'Action':      index  worldwide_gross
+     [348 rows x 2 columns], 'Biography':      index  worldwide_gross
+     0      102      854235992.0
+     1      191      532938302.0
+     2      211      385997896.0
+     3      217      385997896.0
+     4      235       44793168.0
+     ..     ...              ...
+     229   3370         830700.0
+     230   3376        8969065.0
+     231   3398           6260.0
+     232   3413          32092.0
+     233   3422          20056.0
+     
+     [234 rows x 2 columns], 'Action':      index  worldwide_gross
      0        1     1.045664e+09
      1        2     1.497624e+08
      2        3     1.403014e+09
@@ -3976,33 +3859,59 @@ genre_dict
      652   3403     1.577585e+06
      653   3412     3.209200e+04
      
-     [654 rows x 2 columns], 'Drama':       index  worldwide_gross
-     0        28      322459006.0
-     1        29      322459006.0
-     2        33       84747441.0
-     3        34       84747441.0
-     4        67      351040419.0
-     ...     ...              ...
-     1654   3433           3547.0
-     1655   3434           3547.0
-     1656   3440         138711.0
-     1657   3441          94596.0
-     1658   3444           4584.0
+     [654 rows x 2 columns], 'History':     index  worldwide_gross
+     0      32      322459006.0
+     1      37       84747441.0
+     2     102      854235992.0
+     3     146      122603824.0
+     4     159      499837368.0
+     ..    ...              ...
+     85   3135         176262.0
+     86   3169        2592308.0
+     87   3184         288751.0
+     88   3317        5639730.0
+     89   3378         191862.0
      
-     [1659 rows x 2 columns], 'Fantasy':      index  worldwide_gross
+     [90 rows x 2 columns], 'No genre given':     index  worldwide_gross
+     0      31      322459006.0
+     1      36       84747441.0
+     2     103      854235992.0
+     3     104      854235992.0
+     4     107      798008101.0
+     ..    ...              ...
+     61   3393        1165996.0
+     62   3424          30312.0
+     63   3439         489792.0
+     64   3442          94596.0
+     65   3443            527.0
+     
+     [66 rows x 2 columns], 'Adventure':      index  worldwide_gross
      0        1     1.045664e+09
-     1        5     6.559452e+08
-     2        8     3.931513e+08
-     3       13     8.675003e+08
-     4       14     1.017004e+09
+     1        2     1.497624e+08
+     2        3     1.403014e+09
+     3        4     2.048134e+09
+     4        5     6.559452e+08
      ..     ...              ...
-     187   3296     1.719620e+05
-     188   3323     6.809140e+05
-     189   3365     1.711000e+03
-     190   3379     1.918620e+05
-     191   3420     2.769782e+06
+     455   3270     6.188421e+06
+     456   3280     4.426380e+05
+     457   3289     4.500000e+02
+     458   3326     1.980000e+04
+     459   3336     1.778000e+03
      
-     [192 rows x 2 columns], 'Musical':     index  worldwide_gross
+     [460 rows x 2 columns], 'Family':      index  worldwide_gross
+     0       14     1.017004e+09
+     1       43     2.208208e+09
+     2       49     1.025491e+09
+     3       54     4.903591e+08
+     4       58     6.522201e+08
+     ..     ...              ...
+     180   3327     1.980000e+04
+     181   3338     4.243996e+06
+     182   3346     4.503490e+05
+     183   3352     8.913400e+04
+     184   3412     3.209200e+04
+     
+     [185 rows x 2 columns], 'Musical':     index  worldwide_gross
      0      51     1.025491e+09
      1     133     1.259200e+09
      2     134     1.259200e+09
@@ -4033,33 +3942,105 @@ genre_dict
      27   3064     1.381824e+06
      28   3103     2.052980e+05
      29   3116     2.436000e+03
-     30   3311     1.167524e+06, 'No genre given':     index  worldwide_gross
-     0      31      322459006.0
-     1      36       84747441.0
-     2     103      854235992.0
-     3     104      854235992.0
-     4     107      798008101.0
-     ..    ...              ...
-     61   3393        1165996.0
-     62   3424          30312.0
-     63   3439         489792.0
-     64   3442          94596.0
-     65   3443            527.0
+     30   3311     1.167524e+06, 'Music':      index  worldwide_gross
+     0       51     1.025491e+09
+     1      133     1.259200e+09
+     2      134     1.259200e+09
+     3      136     6.084311e+08
+     4      137     6.084311e+08
+     ..     ...              ...
+     105   3314     3.087930e+05
+     106   3366     1.711000e+03
+     107   3386     3.234000e+03
+     108   3409     1.692420e+05
+     109   3422     2.005600e+04
      
-     [66 rows x 2 columns], 'History':     index  worldwide_gross
-     0      32      322459006.0
-     1      37       84747441.0
-     2     102      854235992.0
-     3     146      122603824.0
-     4     159      499837368.0
-     ..    ...              ...
-     85   3135         176262.0
-     86   3169        2592308.0
-     87   3184         288751.0
-     88   3317        5639730.0
-     89   3378         191862.0
+     [110 rows x 2 columns], 'News':    index  worldwide_gross
+     0    300      163018913.0
+     1    307       15716828.0
+     2   1076       98230839.0
+     3   1211       62831715.0
+     4   2046       12394562.0
+     5   2239       46730578.0
+     6   3018         483938.0, 'Drama':       index  worldwide_gross
+     0        28      322459006.0
+     1        29      322459006.0
+     2        33       84747441.0
+     3        34       84747441.0
+     4        67      351040419.0
+     ...     ...              ...
+     1654   3433           3547.0
+     1655   3434           3547.0
+     1656   3440         138711.0
+     1657   3441          94596.0
+     1658   3444           4584.0
      
-     [90 rows x 2 columns], 'War':     index  worldwide_gross
+     [1659 rows x 2 columns], 'Fantasy':      index  worldwide_gross
+     0        1     1.045664e+09
+     1        5     6.559452e+08
+     2        8     3.931513e+08
+     3       13     8.675003e+08
+     4       14     1.017004e+09
+     ..     ...              ...
+     187   3296     1.719620e+05
+     188   3323     6.809140e+05
+     189   3365     1.711000e+03
+     190   3379     1.918620e+05
+     191   3420     2.769782e+06
+     
+     [192 rows x 2 columns], 'Animation':      index  worldwide_gross
+     0       11     5.864772e+08
+     1       44     1.242521e+09
+     2       46     1.021215e+09
+     3       47     1.068880e+09
+     4       53     7.435883e+08
+     ..     ...              ...
+     135   2744     4.182407e+07
+     136   2745     2.127777e+07
+     137   2747     2.127777e+07
+     138   3048     1.392649e+06
+     139   3179     1.849255e+08
+     
+     [140 rows x 2 columns], 'Thriller':      index  worldwide_gross
+     0        6     8.796209e+08
+     1        7     1.084439e+09
+     2       17     1.234846e+09
+     3       30     3.224590e+08
+     4       35     8.474744e+07
+     ..     ...              ...
+     511   3410     3.209200e+04
+     512   3419     4.165647e+07
+     513   3423     8.799000e+03
+     514   3436     1.950430e+05
+     515   3437     4.897920e+05
+     
+     [516 rows x 2 columns], 'Sci-Fi':      index  worldwide_gross
+     0        2     1.497624e+08
+     1        3     1.403014e+09
+     2        4     2.048134e+09
+     3       10     2.827781e+08
+     4       12     1.140069e+09
+     ..     ...              ...
+     202   3380     1.780950e+05
+     203   3407     2.102779e+06
+     204   3417     4.294480e+05
+     205   3423     8.799000e+03
+     206   3427     8.555000e+03
+     
+     [207 rows x 2 columns], 'Comedy':      index  worldwide_gross
+     0       11     5.864772e+08
+     1       26     6.542135e+08
+     2       46     1.021215e+09
+     3       47     1.068880e+09
+     4       53     7.435883e+08
+     ..     ...              ...
+     769   3425     3.031200e+04
+     770   3428     4.917000e+03
+     771   3429     4.241490e+05
+     772   3440     1.387110e+05
+     773   3444     4.584000e+03
+     
+     [774 rows x 2 columns], 'War':     index  worldwide_gross
      0     227      385997896.0
      1     251       44793168.0
      2     326      330780051.0
@@ -4109,27 +4090,55 @@ genre_dict
      46   3173         184705.0
      47   3238        2684207.0
      48   3239        2684207.0
-     49   3261         101053.0, 'News':    index  worldwide_gross
-     0    300      163018913.0
-     1    307       15716828.0
-     2   1076       98230839.0
-     3   1211       62831715.0
-     4   2046       12394562.0
-     5   2239       46730578.0
-     6   3018         483938.0, 'Crime':      index  worldwide_gross
-     0       17     1.234846e+09
-     1       64     1.518723e+09
-     2       97     8.542360e+08
-     3      270     6.301635e+08
-     4      273     5.356634e+08
+     49   3261         101053.0, 'Mystery':      index  worldwide_gross
+     0       76      259357408.0
+     1      256      290650494.0
+     2      278      402448265.0
+     3      281      211856088.0
+     4      283      261400000.0
      ..     ...              ...
-     357   3348     4.370020e+05
-     358   3355     4.445200e+04
-     359   3370     8.307000e+05
-     360   3403     1.577585e+06
-     361   3421     5.942400e+04
+     218   3394        1165996.0
+     219   3417         429448.0
+     220   3419       41656474.0
+     221   3426           8555.0
+     222   3437         489792.0
      
-     [362 rows x 2 columns]}
+     [223 rows x 2 columns], 'Sport':     index  worldwide_gross
+     0     152     8.211334e+08
+     1     153     1.272470e+09
+     2     336     8.768397e+07
+     3     364     1.267046e+08
+     4     365     8.353196e+07
+     ..    ...              ...
+     66   3309     2.047570e+06
+     67   3322     3.144440e+05
+     68   3330     1.980000e+04
+     69   3381     6.766500e+04
+     70   3396     1.626050e+05
+     
+     [71 rows x 2 columns], 'Western':     index  worldwide_gross
+     0       9      260002115.0
+     1     347      449948323.0
+     2     418      162525156.0
+     3     616       69688384.0
+     4     785      117211892.0
+     5     955        8514325.0
+     6    1032       18594227.0
+     7    1115      252276928.0
+     8    1207         786532.0
+     9    1572        3771345.0
+     10   1729       55576699.0
+     11   1954        8217571.0
+     12   1961        1686429.0
+     13   2063        5953886.0
+     14   2196       65532576.0
+     15   2652        8446952.0
+     16   2829        1217307.0
+     17   3021         156362.0
+     18   3054          59696.0
+     19   3096        1869928.0
+     20   3236        2684207.0
+     21   3292            450.0}
 
 
 
@@ -4206,149 +4215,149 @@ df_box.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Mystery</th>
-      <th>Animation</th>
       <th>Romance</th>
-      <th>Biography</th>
-      <th>Comedy</th>
+      <th>Documentary</th>
+      <th>Crime</th>
       <th>Horror</th>
-      <th>Sci-Fi</th>
-      <th>Family</th>
-      <th>Sport</th>
-      <th>Thriller</th>
-      <th>...</th>
-      <th>Adventure</th>
+      <th>Biography</th>
       <th>Action</th>
+      <th>History</th>
+      <th>No genre given</th>
+      <th>Adventure</th>
+      <th>Family</th>
+      <th>...</th>
       <th>Drama</th>
       <th>Fantasy</th>
-      <th>Musical</th>
-      <th>No genre given</th>
-      <th>History</th>
+      <th>Animation</th>
+      <th>Thriller</th>
+      <th>Sci-Fi</th>
+      <th>Comedy</th>
       <th>War</th>
-      <th>News</th>
-      <th>Crime</th>
+      <th>Mystery</th>
+      <th>Sport</th>
+      <th>Western</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>0</td>
-      <td>259357408.0</td>
-      <td>5.864772e+08</td>
       <td>3.510404e+08</td>
-      <td>854235992.0</td>
-      <td>5.864772e+08</td>
-      <td>2.776345e+09</td>
-      <td>1.497624e+08</td>
-      <td>1.017004e+09</td>
-      <td>8.211334e+08</td>
-      <td>8.796209e+08</td>
-      <td>...</td>
-      <td>1.045664e+09</td>
-      <td>1.045664e+09</td>
-      <td>322459006.0</td>
-      <td>1.045664e+09</td>
       <td>1.025491e+09</td>
-      <td>322459006.0</td>
-      <td>322459006.0</td>
-      <td>385997896.0</td>
-      <td>163018913.0</td>
       <td>1.234846e+09</td>
+      <td>2.776345e+09</td>
+      <td>854235992.0</td>
+      <td>1.045664e+09</td>
+      <td>322459006.0</td>
+      <td>322459006.0</td>
+      <td>1.045664e+09</td>
+      <td>1.017004e+09</td>
+      <td>...</td>
+      <td>322459006.0</td>
+      <td>1.045664e+09</td>
+      <td>5.864772e+08</td>
+      <td>8.796209e+08</td>
+      <td>1.497624e+08</td>
+      <td>5.864772e+08</td>
+      <td>385997896.0</td>
+      <td>259357408.0</td>
+      <td>8.211334e+08</td>
+      <td>260002115.0</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>290650494.0</td>
-      <td>1.242521e+09</td>
       <td>2.653320e+07</td>
-      <td>532938302.0</td>
-      <td>6.542135e+08</td>
+      <td>1.800478e+08</td>
+      <td>1.518723e+09</td>
       <td>5.315146e+08</td>
-      <td>1.403014e+09</td>
+      <td>532938302.0</td>
+      <td>1.497624e+08</td>
+      <td>84747441.0</td>
+      <td>84747441.0</td>
+      <td>1.497624e+08</td>
       <td>2.208208e+09</td>
-      <td>1.272470e+09</td>
-      <td>1.084439e+09</td>
       <td>...</td>
-      <td>1.497624e+08</td>
-      <td>1.497624e+08</td>
       <td>322459006.0</td>
       <td>6.559452e+08</td>
-      <td>1.259200e+09</td>
-      <td>84747441.0</td>
-      <td>84747441.0</td>
+      <td>1.242521e+09</td>
+      <td>1.084439e+09</td>
+      <td>1.403014e+09</td>
+      <td>6.542135e+08</td>
       <td>44793168.0</td>
-      <td>15716828.0</td>
-      <td>1.518723e+09</td>
+      <td>290650494.0</td>
+      <td>1.272470e+09</td>
+      <td>449948323.0</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>402448265.0</td>
-      <td>1.021215e+09</td>
       <td>1.259200e+09</td>
-      <td>385997896.0</td>
-      <td>1.021215e+09</td>
+      <td>8.542360e+08</td>
+      <td>8.542360e+08</td>
       <td>5.295307e+08</td>
-      <td>2.048134e+09</td>
+      <td>385997896.0</td>
+      <td>1.403014e+09</td>
+      <td>854235992.0</td>
+      <td>854235992.0</td>
+      <td>1.403014e+09</td>
       <td>1.025491e+09</td>
-      <td>8.768397e+07</td>
-      <td>1.234846e+09</td>
       <td>...</td>
-      <td>1.403014e+09</td>
-      <td>1.403014e+09</td>
       <td>84747441.0</td>
       <td>3.931513e+08</td>
-      <td>1.259200e+09</td>
-      <td>854235992.0</td>
-      <td>854235992.0</td>
+      <td>1.021215e+09</td>
+      <td>1.234846e+09</td>
+      <td>2.048134e+09</td>
+      <td>1.021215e+09</td>
       <td>330780051.0</td>
-      <td>98230839.0</td>
-      <td>8.542360e+08</td>
+      <td>402448265.0</td>
+      <td>8.768397e+07</td>
+      <td>162525156.0</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>211856088.0</td>
-      <td>1.068880e+09</td>
       <td>6.084311e+08</td>
-      <td>385997896.0</td>
-      <td>1.068880e+09</td>
+      <td>8.542360e+08</td>
+      <td>6.301635e+08</td>
       <td>7.980081e+08</td>
-      <td>2.827781e+08</td>
+      <td>385997896.0</td>
+      <td>2.048134e+09</td>
+      <td>122603824.0</td>
+      <td>854235992.0</td>
+      <td>2.048134e+09</td>
       <td>4.903591e+08</td>
-      <td>1.267046e+08</td>
-      <td>3.224590e+08</td>
       <td>...</td>
-      <td>2.048134e+09</td>
-      <td>2.048134e+09</td>
       <td>84747441.0</td>
       <td>8.675003e+08</td>
-      <td>6.084311e+08</td>
-      <td>854235992.0</td>
-      <td>122603824.0</td>
+      <td>1.068880e+09</td>
+      <td>3.224590e+08</td>
+      <td>2.827781e+08</td>
+      <td>1.068880e+09</td>
       <td>210315681.0</td>
-      <td>62831715.0</td>
-      <td>6.301635e+08</td>
+      <td>211856088.0</td>
+      <td>1.267046e+08</td>
+      <td>69688384.0</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>261400000.0</td>
-      <td>7.435883e+08</td>
       <td>1.272470e+09</td>
-      <td>44793168.0</td>
-      <td>7.435883e+08</td>
+      <td>2.066275e+08</td>
+      <td>5.356634e+08</td>
       <td>2.382027e+08</td>
-      <td>1.140069e+09</td>
+      <td>44793168.0</td>
+      <td>6.559452e+08</td>
+      <td>499837368.0</td>
+      <td>798008101.0</td>
+      <td>6.559452e+08</td>
       <td>6.522201e+08</td>
-      <td>8.353196e+07</td>
-      <td>8.474744e+07</td>
       <td>...</td>
-      <td>6.559452e+08</td>
-      <td>6.559452e+08</td>
       <td>351040419.0</td>
       <td>1.017004e+09</td>
-      <td>6.084311e+08</td>
-      <td>798008101.0</td>
-      <td>499837368.0</td>
+      <td>7.435883e+08</td>
+      <td>8.474744e+07</td>
+      <td>1.140069e+09</td>
+      <td>7.435883e+08</td>
       <td>156815529.0</td>
-      <td>12394562.0</td>
-      <td>5.356634e+08</td>
+      <td>261400000.0</td>
+      <td>8.353196e+07</td>
+      <td>117211892.0</td>
     </tr>
   </tbody>
 </table>
@@ -4383,29 +4392,29 @@ wwg_sum
 
 
 
-    {'Mystery': 17035792756.0,
-     'Animation': 44369274383.0,
-     'Romance': 22187236632.0,
-     'Biography': 16966697195.0,
-     'Comedy': 86146214279.0,
-     'Horror': 26107395474.0,
-     'Sci-Fi': 50990758281.0,
-     'Family': 31819192685.0,
-     'Sport': 5221478607.0,
-     'Thriller': 45325370571.0,
-     'Western': 1494721290.0,
+    {'Romance': 22187236632.0,
      'Documentary': 31585602722.0,
-     'Music': 13316389423.0,
-     'Adventure': 138334162940.0,
+     'Crime': 25501138686.0,
+     'Horror': 26107395474.0,
+     'Biography': 16966697195.0,
      'Action': 125098855004.0,
+     'History': 7065495194.0,
+     'No genre given': 6935392684.0,
+     'Adventure': 138334162940.0,
+     'Family': 31819192685.0,
+     'Musical': 7774319945.0,
+     'Music': 13316389423.0,
+     'News': 399407373.0,
      'Drama': 107762106889.0,
      'Fantasy': 43607449439.0,
-     'Musical': 7774319945.0,
-     'No genre given': 6935392684.0,
-     'History': 7065495194.0,
+     'Animation': 44369274383.0,
+     'Thriller': 45325370571.0,
+     'Sci-Fi': 50990758281.0,
+     'Comedy': 86146214279.0,
      'War': 2825571293.0,
-     'News': 399407373.0,
-     'Crime': 25501138686.0}
+     'Mystery': 17035792756.0,
+     'Sport': 5221478607.0,
+     'Western': 1494721290.0}
 
 
 
@@ -4444,28 +4453,28 @@ df_wwg.head()
   <tbody>
     <tr>
       <td>0</td>
-      <td>Mystery</td>
-      <td>1.703579e+10</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Animation</td>
-      <td>4.436927e+10</td>
-    </tr>
-    <tr>
-      <td>2</td>
       <td>Romance</td>
       <td>2.218724e+10</td>
     </tr>
     <tr>
+      <td>1</td>
+      <td>Documentary</td>
+      <td>3.158560e+10</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Crime</td>
+      <td>2.550114e+10</td>
+    </tr>
+    <tr>
       <td>3</td>
-      <td>Biography</td>
-      <td>1.696670e+10</td>
+      <td>Horror</td>
+      <td>2.610740e+10</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>Comedy</td>
-      <td>8.614621e+10</td>
+      <td>Biography</td>
+      <td>1.696670e+10</td>
     </tr>
   </tbody>
 </table>
@@ -4507,27 +4516,27 @@ df_wwg.head()
   </thead>
   <tbody>
     <tr>
-      <td>13</td>
+      <td>8</td>
       <td>Adventure</td>
       <td>1.383342e+11</td>
     </tr>
     <tr>
-      <td>14</td>
+      <td>5</td>
       <td>Action</td>
       <td>1.250989e+11</td>
     </tr>
     <tr>
-      <td>15</td>
+      <td>13</td>
       <td>Drama</td>
       <td>1.077621e+11</td>
     </tr>
     <tr>
-      <td>4</td>
+      <td>18</td>
       <td>Comedy</td>
       <td>8.614621e+10</td>
     </tr>
     <tr>
-      <td>6</td>
+      <td>17</td>
       <td>Sci-Fi</td>
       <td>5.099076e+10</td>
     </tr>
@@ -4549,29 +4558,29 @@ wwg_mean
 
 
 
-    {'Mystery': 76393689.48878923,
-     'Animation': 316923388.45,
-     'Romance': 64310830.817391306,
-     'Biography': 72507252.97008547,
-     'Comedy': 111300018.44832042,
-     'Horror': 75021251.36206897,
-     'Sci-Fi': 246332165.60869566,
-     'Family': 171995636.13513514,
-     'Sport': 73541952.2112676,
-     'Thriller': 87839865.44767442,
-     'Western': 67941876.81818181,
+    {'Romance': 64310830.817391306,
      'Documentary': 71622681.90929705,
-     'Music': 121058085.66363636,
-     'Adventure': 300726441.17391306,
+     'Crime': 70445134.4917127,
+     'Horror': 75021251.36206897,
+     'Biography': 72507252.97008547,
      'Action': 191282652.911315,
+     'History': 78505502.15555556,
+     'No genre given': 105081707.33333333,
+     'Adventure': 300726441.17391306,
+     'Family': 171995636.13513514,
+     'Musical': 250784514.3548387,
+     'Music': 121058085.66363636,
+     'News': 57058196.14285714,
      'Drama': 64956062.01868595,
      'Fantasy': 227122132.49479166,
-     'Musical': 250784514.3548387,
-     'No genre given': 105081707.33333333,
-     'History': 78505502.15555556,
+     'Animation': 316923388.45,
+     'Thriller': 87839865.44767442,
+     'Sci-Fi': 246332165.60869566,
+     'Comedy': 111300018.44832042,
      'War': 56511425.86,
-     'News': 57058196.14285714,
-     'Crime': 70445134.4917127}
+     'Mystery': 76393689.48878923,
+     'Sport': 73541952.2112676,
+     'Western': 67941876.81818181}
 
 
 
@@ -4610,28 +4619,28 @@ df_mean.head()
   <tbody>
     <tr>
       <td>0</td>
-      <td>Mystery</td>
-      <td>7.639369e+07</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Animation</td>
-      <td>3.169234e+08</td>
-    </tr>
-    <tr>
-      <td>2</td>
       <td>Romance</td>
       <td>6.431083e+07</td>
     </tr>
     <tr>
+      <td>1</td>
+      <td>Documentary</td>
+      <td>7.162268e+07</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Crime</td>
+      <td>7.044513e+07</td>
+    </tr>
+    <tr>
       <td>3</td>
-      <td>Biography</td>
-      <td>7.250725e+07</td>
+      <td>Horror</td>
+      <td>7.502125e+07</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>Comedy</td>
-      <td>1.113000e+08</td>
+      <td>Biography</td>
+      <td>7.250725e+07</td>
     </tr>
   </tbody>
 </table>
@@ -4673,27 +4682,27 @@ df_mean.head()
   </thead>
   <tbody>
     <tr>
-      <td>1</td>
+      <td>15</td>
       <td>Animation</td>
       <td>3.169234e+08</td>
     </tr>
     <tr>
-      <td>13</td>
+      <td>8</td>
       <td>Adventure</td>
       <td>3.007264e+08</td>
     </tr>
     <tr>
-      <td>17</td>
+      <td>10</td>
       <td>Musical</td>
       <td>2.507845e+08</td>
     </tr>
     <tr>
-      <td>6</td>
+      <td>17</td>
       <td>Sci-Fi</td>
       <td>2.463322e+08</td>
     </tr>
     <tr>
-      <td>16</td>
+      <td>14</td>
       <td>Fantasy</td>
       <td>2.271221e+08</td>
     </tr>
@@ -4712,18 +4721,19 @@ ax_box.set_xticklabels(df_box, rotation=45, ha='right')
 ax_box.set_ylabel('Worldwide Gross (billions)')
 ax_box.set_xlabel('Genres')
 
+# Save plot as png
+plt.savefig('plots/bo_genre_boxwhisker.png', transparent=True)
 ```
 
 
-
-
-    Text(0.5, 0, 'Genres')
-
+![png](student_files/student_68_0.png)
 
 
 
-![png](student_files/student_68_1.png)
-
+```python
+# Set context to look better on a presentation
+sns.set_context("talk")
+```
 
 
 ```python
@@ -4744,17 +4754,13 @@ ax_mean.set_title('Average Worldwide Gross per Genre')
 ax_mean.set_xticklabels(df_mean['genre'], rotation=45, ha='right'),
 ax_mean.set_ylabel('Worldwide Gross (in hundred millions)')
 ax_mean.set_xlabel('Genres')
+
+# Save plot as png
+plt.savefig('plots/bo_genre_subplots.png', transparent=True)
 ```
 
 
-
-
-    Text(0.5, 0, 'Genres')
-
-
-
-
-![png](student_files/student_69_1.png)
+![png](student_files/student_70_0.png)
 
 
 #### Interpetation:
@@ -5370,16 +5376,16 @@ df_rate_genre.head()
       <th>vote_count</th>
       <th>tconst</th>
       <th>...</th>
-      <th>Adventure</th>
-      <th>Action</th>
       <th>Drama</th>
       <th>Fantasy</th>
-      <th>Musical</th>
-      <th>No genre given</th>
-      <th>History</th>
+      <th>Animation</th>
+      <th>Thriller</th>
+      <th>Sci-Fi</th>
+      <th>Comedy</th>
       <th>War</th>
-      <th>News</th>
-      <th>Crime</th>
+      <th>Mystery</th>
+      <th>Sport</th>
+      <th>Western</th>
     </tr>
   </thead>
   <tbody>
@@ -5396,10 +5402,10 @@ df_rate_genre.head()
       <td>4161</td>
       <td>tt5311514</td>
       <td>...</td>
-      <td>False</td>
-      <td>False</td>
       <td>True</td>
       <td>True</td>
+      <td>True</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -5420,9 +5426,9 @@ df_rate_genre.head()
       <td>4048</td>
       <td>tt4633694</td>
       <td>...</td>
-      <td>True</td>
-      <td>True</td>
       <td>False</td>
+      <td>False</td>
+      <td>True</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -5444,9 +5450,9 @@ df_rate_genre.head()
       <td>7908</td>
       <td>tt2582802</td>
       <td>...</td>
-      <td>False</td>
-      <td>False</td>
       <td>True</td>
+      <td>False</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -5468,9 +5474,9 @@ df_rate_genre.head()
       <td>1399</td>
       <td>tt3612616</td>
       <td>...</td>
-      <td>False</td>
-      <td>False</td>
       <td>True</td>
+      <td>False</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -5492,9 +5498,9 @@ df_rate_genre.head()
       <td>1399</td>
       <td>tt5152894</td>
       <td>...</td>
-      <td>False</td>
-      <td>False</td>
       <td>True</td>
+      <td>False</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -5527,10 +5533,10 @@ df_rate_genre.columns
     Index(['genre_ids', 'id', 'original_language', 'original_title_x',
            'popularity', 'release_date', 'title', 'vote_average', 'vote_count',
            'tconst', 'primary_title', 'original_title_y', 'start_year',
-           'runtime_minutes', 'genres', 'Mystery', 'Animation', 'Romance',
-           'Biography', 'Comedy', 'Horror', 'Sci-Fi', 'Family', 'Sport',
-           'Thriller', 'Western', 'Documentary', 'Music', 'Adventure', 'Action',
-           'Drama', 'Fantasy', 'Musical', 'History', 'War', 'News', 'Crime'],
+           'runtime_minutes', 'genres', 'Romance', 'Documentary', 'Crime',
+           'Horror', 'Biography', 'Action', 'History', 'Adventure', 'Family',
+           'Musical', 'Music', 'News', 'Drama', 'Fantasy', 'Animation', 'Thriller',
+           'Sci-Fi', 'Comedy', 'War', 'Mystery', 'Sport', 'Western'],
           dtype='object')
 
 
@@ -5555,33 +5561,7 @@ genre_dict_rate
 
 
 
-    {'Mystery':      index  vote_average
-     0        7           8.3
-     1       32           8.1
-     2       37           8.1
-     3       47           8.0
-     4       83           7.9
-     ..     ...           ...
-     158   1967           4.9
-     159   1968           4.8
-     160   1975           4.7
-     161   1989           4.0
-     162   1991           4.0
-     
-     [163 rows x 2 columns], 'Animation':      index  vote_average
-     0        0           8.6
-     1        1           8.4
-     2        6           8.3
-     3       15           8.2
-     4       18           8.2
-     ..     ...           ...
-     114   1804           5.6
-     115   1807           5.6
-     116   1830           5.6
-     117   1840           5.5
-     118   1893           5.4
-     
-     [119 rows x 2 columns], 'Romance':      index  vote_average
+    {'Romance':      index  vote_average
      0        5           8.3
      1        6           8.3
      2        7           8.3
@@ -5594,124 +5574,7 @@ genre_dict_rate
      241   1929           5.2
      242   1983           4.4
      
-     [243 rows x 2 columns], 'Biography':      index  vote_average
-     0        9           8.3
-     1       18           8.2
-     2       19           8.2
-     3       29           8.1
-     4       31           8.1
-     ..     ...           ...
-     132   1788           5.6
-     133   1848           5.5
-     134   1864           5.5
-     135   1894           5.4
-     136   1905           5.3
-     
-     [137 rows x 2 columns], 'Comedy':      index  vote_average
-     0        9           8.3
-     1       15           8.2
-     2       19           8.2
-     3       23           8.2
-     4       33           8.1
-     ..     ...           ...
-     520   1982           4.4
-     521   1985           4.2
-     522   1987           4.1
-     523   1988           4.1
-     524   1990           4.0
-     
-     [525 rows x 2 columns], 'Horror':      index  vote_average
-     0        7           8.3
-     1       16           8.2
-     2       50           8.0
-     3       56           8.0
-     4       60           8.0
-     ..     ...           ...
-     236   1985           4.2
-     237   1989           4.0
-     238   1990           4.0
-     239   1991           4.0
-     240   1994           3.7
-     
-     [241 rows x 2 columns], 'Sci-Fi':      index  vote_average
-     0        8           8.3
-     1       13           8.3
-     2       17           8.2
-     3       75           7.9
-     4      112           7.8
-     ..     ...           ...
-     158   1942           5.1
-     159   1949           5.1
-     160   1950           5.1
-     161   1951           5.1
-     162   1971           4.8
-     
-     [163 rows x 2 columns], 'Family':     index  vote_average
-     0      22           8.2
-     1      24           8.2
-     2      42           8.0
-     3      66           7.9
-     4      89           7.9
-     ..    ...           ...
-     83   1902           5.3
-     84   1918           5.3
-     85   1937           5.1
-     86   1952           5.0
-     87   1977           4.6
-     
-     [88 rows x 2 columns], 'Sport':     index  vote_average
-     0     101           7.8
-     1     229           7.4
-     2     255           7.4
-     3     275           7.4
-     4     295           7.3
-     5     298           5.8
-     6     322           7.3
-     7     324           7.3
-     8     328           7.3
-     9     337           7.3
-     10    358           7.2
-     11    371           7.2
-     12    376           7.2
-     13    420           7.1
-     14    464           7.1
-     15    528           7.0
-     16    544           7.0
-     17    762           6.7
-     18    789           6.7
-     19    843           6.7
-     20    888           6.6
-     21    891           6.6
-     22    978           6.5
-     23   1461           6.0
-     24   1469           6.0
-     25   1783           5.6
-     26   1788           5.6, 'Thriller':      index  vote_average
-     0       10           8.3
-     1       27           8.1
-     2       32           8.1
-     3       36           8.1
-     4       56           8.0
-     ..     ...           ...
-     339   1972           4.8
-     340   1980           4.4
-     341   1989           4.0
-     342   1991           4.0
-     343   1994           3.7
-     
-     [344 rows x 2 columns], 'Western':     index  vote_average
-     0      49           8.0
-     1     345           7.2
-     2     774           6.7
-     3     821           6.7
-     4     885           6.6
-     5    1113           6.4
-     6    1343           6.2
-     7    1458           6.0
-     8    1655           5.8
-     9    1730           5.7
-     10   1860           5.5
-     11   1953           5.0, 'Documentary':      index  vote_average
+     [243 rows x 2 columns], 'Documentary':      index  vote_average
      0       12           8.3
      1       40           8.0
      2       44           8.0
@@ -5724,7 +5587,117 @@ genre_dict_rate
      154   1966           4.9
      155   1993           4.0
      
-     [156 rows x 2 columns], 'Music':     index  vote_average
+     [156 rows x 2 columns], 'Crime':      index  vote_average
+     0       18           8.2
+     1       20           8.2
+     2       25           8.2
+     3       39           8.0
+     4       47           8.0
+     ..     ...           ...
+     258   1944           5.1
+     259   1954           5.0
+     260   1962           5.0
+     261   1975           4.7
+     262   1986           4.2
+     
+     [263 rows x 2 columns], 'Horror':      index  vote_average
+     0        7           8.3
+     1       16           8.2
+     2       50           8.0
+     3       56           8.0
+     4       60           8.0
+     ..     ...           ...
+     236   1985           4.2
+     237   1989           4.0
+     238   1990           4.0
+     239   1991           4.0
+     240   1994           3.7
+     
+     [241 rows x 2 columns], 'Biography':      index  vote_average
+     0        9           8.3
+     1       18           8.2
+     2       19           8.2
+     3       29           8.1
+     4       31           8.1
+     ..     ...           ...
+     132   1788           5.6
+     133   1848           5.5
+     134   1864           5.5
+     135   1894           5.4
+     136   1905           5.3
+     
+     [137 rows x 2 columns], 'Action':      index  vote_average
+     0        1           8.4
+     1        8           8.3
+     2       13           8.3
+     3       35           8.1
+     4       53           8.0
+     ..     ...           ...
+     494   1977           4.6
+     495   1978           4.5
+     496   1979           4.5
+     497   1984           4.4
+     498   1992           4.0
+     
+     [499 rows x 2 columns], 'History':     index  vote_average
+     0      29           8.1
+     1      44           8.0
+     2      48           8.0
+     3      87           7.9
+     4     109           7.8
+     ..    ...           ...
+     57   1574           5.9
+     58   1787           5.6
+     59   1808           5.6
+     60   1862           5.5
+     61   1959           5.0
+     
+     [62 rows x 2 columns], 'Adventure':      index  vote_average
+     0        1           8.4
+     1        8           8.3
+     2       13           8.3
+     3       15           8.2
+     4       17           8.2
+     ..     ...           ...
+     382   1977           4.6
+     383   1978           4.5
+     384   1984           4.4
+     385   1986           4.2
+     386   1990           4.0
+     
+     [387 rows x 2 columns], 'Family':     index  vote_average
+     0      22           8.2
+     1      24           8.2
+     2      42           8.0
+     3      66           7.9
+     4      89           7.9
+     ..    ...           ...
+     83   1902           5.3
+     84   1918           5.3
+     85   1937           5.1
+     86   1952           5.0
+     87   1977           4.6
+     
+     [88 rows x 2 columns], 'Musical':     index  vote_average
+     0      51           8.0
+     1     144           7.7
+     2     145           7.7
+     3     147           6.9
+     4     148           6.9
+     5     150           5.9
+     6     151           5.9
+     7     247           7.4
+     8     336           7.3
+     9     369           7.2
+     10    405           7.2
+     11    423           7.1
+     12    490           7.1
+     13    790           6.7
+     14    795           6.7
+     15    931           6.6
+     16   1398           6.1
+     17   1451           6.1
+     18   1755           5.7, 'Music':     index  vote_average
      0       2           8.4
      1      31           8.1
      2      51           8.0
@@ -5781,33 +5754,10 @@ genre_dict_rate
      53   1625           5.9
      54   1644           5.9
      55   1749           5.7
-     56   1755           5.7, 'Adventure':      index  vote_average
-     0        1           8.4
-     1        8           8.3
-     2       13           8.3
-     3       15           8.2
-     4       17           8.2
-     ..     ...           ...
-     382   1977           4.6
-     383   1978           4.5
-     384   1984           4.4
-     385   1986           4.2
-     386   1990           4.0
-     
-     [387 rows x 2 columns], 'Action':      index  vote_average
-     0        1           8.4
-     1        8           8.3
-     2       13           8.3
-     3       35           8.1
-     4       53           8.0
-     ..     ...           ...
-     494   1977           4.6
-     495   1978           4.5
-     496   1979           4.5
-     497   1984           4.4
-     498   1992           4.0
-     
-     [499 rows x 2 columns], 'Drama':      index  vote_average
+     56   1755           5.7, 'News':    index  vote_average
+     0    137           7.7
+     1    992           6.5
+     2   1966           4.9, 'Drama':      index  vote_average
      0        0           8.6
      1        2           8.4
      2        3           8.3
@@ -5833,39 +5783,59 @@ genre_dict_rate
      171   1978           4.5
      172   1992           4.0
      
-     [173 rows x 2 columns], 'Musical':     index  vote_average
-     0      51           8.0
-     1     144           7.7
-     2     145           7.7
-     3     147           6.9
-     4     148           6.9
-     5     150           5.9
-     6     151           5.9
-     7     247           7.4
-     8     336           7.3
-     9     369           7.2
-     10    405           7.2
-     11    423           7.1
-     12    490           7.1
-     13    790           6.7
-     14    795           6.7
-     15    931           6.6
-     16   1398           6.1
-     17   1451           6.1
-     18   1755           5.7, 'History':     index  vote_average
-     0      29           8.1
-     1      44           8.0
-     2      48           8.0
-     3      87           7.9
-     4     109           7.8
-     ..    ...           ...
-     57   1574           5.9
-     58   1787           5.6
-     59   1808           5.6
-     60   1862           5.5
-     61   1959           5.0
+     [173 rows x 2 columns], 'Animation':      index  vote_average
+     0        0           8.6
+     1        1           8.4
+     2        6           8.3
+     3       15           8.2
+     4       18           8.2
+     ..     ...           ...
+     114   1804           5.6
+     115   1807           5.6
+     116   1830           5.6
+     117   1840           5.5
+     118   1893           5.4
      
-     [62 rows x 2 columns], 'War':     index  vote_average
+     [119 rows x 2 columns], 'Thriller':      index  vote_average
+     0       10           8.3
+     1       27           8.1
+     2       32           8.1
+     3       36           8.1
+     4       56           8.0
+     ..     ...           ...
+     339   1972           4.8
+     340   1980           4.4
+     341   1989           4.0
+     342   1991           4.0
+     343   1994           3.7
+     
+     [344 rows x 2 columns], 'Sci-Fi':      index  vote_average
+     0        8           8.3
+     1       13           8.3
+     2       17           8.2
+     3       75           7.9
+     4      112           7.8
+     ..     ...           ...
+     158   1942           5.1
+     159   1949           5.1
+     160   1950           5.1
+     161   1951           5.1
+     162   1971           4.8
+     
+     [163 rows x 2 columns], 'Comedy':      index  vote_average
+     0        9           8.3
+     1       15           8.2
+     2       19           8.2
+     3       23           8.2
+     4       33           8.1
+     ..     ...           ...
+     520   1982           4.4
+     521   1985           4.2
+     522   1987           4.1
+     523   1988           4.1
+     524   1990           4.0
+     
+     [525 rows x 2 columns], 'War':     index  vote_average
      0      37           8.1
      1     113           7.8
      2     179           7.6
@@ -5888,23 +5858,59 @@ genre_dict_rate
      19   1482           6.0
      20   1652           5.8
      21   1672           5.8
-     22   1798           5.6, 'News':    index  vote_average
-     0    137           7.7
-     1    992           6.5
-     2   1966           4.9, 'Crime':      index  vote_average
-     0       18           8.2
-     1       20           8.2
-     2       25           8.2
-     3       39           8.0
-     4       47           8.0
+     22   1798           5.6, 'Mystery':      index  vote_average
+     0        7           8.3
+     1       32           8.1
+     2       37           8.1
+     3       47           8.0
+     4       83           7.9
      ..     ...           ...
-     258   1944           5.1
-     259   1954           5.0
-     260   1962           5.0
-     261   1975           4.7
-     262   1986           4.2
+     158   1967           4.9
+     159   1968           4.8
+     160   1975           4.7
+     161   1989           4.0
+     162   1991           4.0
      
-     [263 rows x 2 columns]}
+     [163 rows x 2 columns], 'Sport':     index  vote_average
+     0     101           7.8
+     1     229           7.4
+     2     255           7.4
+     3     275           7.4
+     4     295           7.3
+     5     298           5.8
+     6     322           7.3
+     7     324           7.3
+     8     328           7.3
+     9     337           7.3
+     10    358           7.2
+     11    371           7.2
+     12    376           7.2
+     13    420           7.1
+     14    464           7.1
+     15    528           7.0
+     16    544           7.0
+     17    762           6.7
+     18    789           6.7
+     19    843           6.7
+     20    888           6.6
+     21    891           6.6
+     22    978           6.5
+     23   1461           6.0
+     24   1469           6.0
+     25   1783           5.6
+     26   1788           5.6, 'Western':     index  vote_average
+     0      49           8.0
+     1     345           7.2
+     2     774           6.7
+     3     821           6.7
+     4     885           6.6
+     5    1113           6.4
+     6    1343           6.2
+     7    1458           6.0
+     8    1655           5.8
+     9    1730           5.7
+     10   1860           5.5
+     11   1953           5.0}
 
 
 
@@ -5969,149 +5975,149 @@ df_rate_box.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Mystery</th>
-      <th>Animation</th>
       <th>Romance</th>
-      <th>Biography</th>
-      <th>Comedy</th>
+      <th>Documentary</th>
+      <th>Crime</th>
       <th>Horror</th>
-      <th>Sci-Fi</th>
-      <th>Family</th>
-      <th>Sport</th>
-      <th>Thriller</th>
-      <th>...</th>
-      <th>Music</th>
-      <th>Adventure</th>
+      <th>Biography</th>
       <th>Action</th>
+      <th>History</th>
+      <th>Adventure</th>
+      <th>Family</th>
+      <th>Musical</th>
+      <th>...</th>
       <th>Drama</th>
       <th>Fantasy</th>
-      <th>Musical</th>
-      <th>History</th>
+      <th>Animation</th>
+      <th>Thriller</th>
+      <th>Sci-Fi</th>
+      <th>Comedy</th>
       <th>War</th>
-      <th>News</th>
-      <th>Crime</th>
+      <th>Mystery</th>
+      <th>Sport</th>
+      <th>Western</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>0</td>
       <td>8.3</td>
-      <td>8.6</td>
-      <td>8.3</td>
-      <td>8.3</td>
-      <td>8.3</td>
-      <td>8.3</td>
       <td>8.3</td>
       <td>8.2</td>
-      <td>7.8</td>
       <td>8.3</td>
-      <td>...</td>
+      <td>8.3</td>
       <td>8.4</td>
+      <td>8.1</td>
       <td>8.4</td>
-      <td>8.4</td>
-      <td>8.6</td>
-      <td>8.6</td>
+      <td>8.2</td>
       <td>8.0</td>
+      <td>...</td>
+      <td>8.6</td>
+      <td>8.6</td>
+      <td>8.6</td>
+      <td>8.3</td>
+      <td>8.3</td>
+      <td>8.3</td>
       <td>8.1</td>
-      <td>8.1</td>
-      <td>7.7</td>
-      <td>8.2</td>
+      <td>8.3</td>
+      <td>7.8</td>
+      <td>8.0</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>8.1</td>
-      <td>8.4</td>
       <td>8.3</td>
-      <td>8.2</td>
-      <td>8.2</td>
-      <td>8.2</td>
-      <td>8.3</td>
-      <td>8.2</td>
-      <td>7.4</td>
-      <td>8.1</td>
-      <td>...</td>
-      <td>8.1</td>
-      <td>8.3</td>
-      <td>8.3</td>
-      <td>8.4</td>
-      <td>8.1</td>
-      <td>7.7</td>
       <td>8.0</td>
-      <td>7.8</td>
-      <td>6.5</td>
       <td>8.2</td>
+      <td>8.2</td>
+      <td>8.2</td>
+      <td>8.3</td>
+      <td>8.0</td>
+      <td>8.3</td>
+      <td>8.2</td>
+      <td>7.7</td>
+      <td>...</td>
+      <td>8.4</td>
+      <td>8.1</td>
+      <td>8.4</td>
+      <td>8.1</td>
+      <td>8.3</td>
+      <td>8.2</td>
+      <td>7.8</td>
+      <td>8.1</td>
+      <td>7.4</td>
+      <td>7.2</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>8.1</td>
       <td>8.3</td>
-      <td>8.3</td>
-      <td>8.2</td>
-      <td>8.2</td>
       <td>8.0</td>
       <td>8.2</td>
       <td>8.0</td>
-      <td>7.4</td>
-      <td>8.1</td>
+      <td>8.2</td>
+      <td>8.3</td>
+      <td>8.0</td>
+      <td>8.3</td>
+      <td>8.0</td>
+      <td>7.7</td>
       <td>...</td>
-      <td>8.0</td>
-      <td>8.3</td>
-      <td>8.3</td>
       <td>8.3</td>
       <td>7.9</td>
-      <td>7.7</td>
-      <td>8.0</td>
-      <td>7.6</td>
-      <td>4.9</td>
+      <td>8.3</td>
+      <td>8.1</td>
       <td>8.2</td>
+      <td>8.2</td>
+      <td>7.6</td>
+      <td>8.1</td>
+      <td>7.4</td>
+      <td>6.7</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>8.0</td>
-      <td>8.2</td>
       <td>8.3</td>
-      <td>8.1</td>
-      <td>8.2</td>
       <td>8.0</td>
-      <td>7.9</td>
-      <td>7.9</td>
-      <td>7.4</td>
+      <td>8.0</td>
+      <td>8.0</td>
       <td>8.1</td>
+      <td>8.1</td>
+      <td>7.9</td>
+      <td>8.2</td>
+      <td>7.9</td>
+      <td>6.9</td>
       <td>...</td>
-      <td>8.0</td>
-      <td>8.2</td>
-      <td>8.1</td>
       <td>8.3</td>
       <td>7.7</td>
-      <td>6.9</td>
+      <td>8.2</td>
+      <td>8.1</td>
       <td>7.9</td>
+      <td>8.2</td>
       <td>7.6</td>
-      <td>NaN</td>
       <td>8.0</td>
+      <td>7.4</td>
+      <td>6.7</td>
     </tr>
     <tr>
       <td>4</td>
+      <td>8.2</td>
       <td>7.9</td>
-      <td>8.2</td>
-      <td>8.2</td>
-      <td>8.1</td>
+      <td>8.0</td>
+      <td>8.0</td>
       <td>8.1</td>
       <td>8.0</td>
       <td>7.8</td>
-      <td>7.9</td>
-      <td>7.3</td>
-      <td>8.0</td>
-      <td>...</td>
-      <td>7.9</td>
       <td>8.2</td>
-      <td>8.0</td>
+      <td>7.9</td>
+      <td>6.9</td>
+      <td>...</td>
       <td>8.3</td>
       <td>7.7</td>
-      <td>6.9</td>
-      <td>7.8</td>
-      <td>7.5</td>
-      <td>NaN</td>
+      <td>8.2</td>
       <td>8.0</td>
+      <td>7.8</td>
+      <td>8.1</td>
+      <td>7.5</td>
+      <td>7.9</td>
+      <td>7.3</td>
+      <td>6.6</td>
     </tr>
   </tbody>
 </table>
@@ -6138,28 +6144,28 @@ rate_mean
 
 
 
-    {'Mystery': 6.3975460122699355,
-     'Animation': 6.823529411764705,
-     'Romance': 6.639094650205763,
-     'Biography': 6.940875912408761,
-     'Comedy': 6.432761904761894,
-     'Horror': 6.085062240663898,
-     'Sci-Fi': 6.465030674846624,
-     'Family': 6.6477272727272725,
-     'Sport': 6.855555555555553,
-     'Thriller': 6.3590116279069795,
-     'Western': 6.316666666666666,
+    {'Romance': 6.639094650205763,
      'Documentary': 6.612820512820517,
-     'Music': 6.889473684210525,
-     'Adventure': 6.459173126614984,
+     'Crime': 6.492395437262356,
+     'Horror': 6.085062240663898,
+     'Biography': 6.940875912408761,
      'Action': 6.358717434869741,
+     'History': 6.908064516129033,
+     'Adventure': 6.459173126614984,
+     'Family': 6.6477272727272725,
+     'Musical': 6.852631578947366,
+     'Music': 6.889473684210525,
+     'News': 6.366666666666667,
      'Drama': 6.6840292275574065,
      'Fantasy': 6.26300578034682,
-     'Musical': 6.852631578947366,
-     'History': 6.908064516129033,
+     'Animation': 6.823529411764705,
+     'Thriller': 6.3590116279069795,
+     'Sci-Fi': 6.465030674846624,
+     'Comedy': 6.432761904761894,
      'War': 6.88695652173913,
-     'News': 6.366666666666667,
-     'Crime': 6.492395437262356}
+     'Mystery': 6.3975460122699355,
+     'Sport': 6.855555555555553,
+     'Western': 6.316666666666666}
 
 
 
@@ -6201,27 +6207,27 @@ df_rate_mean.head()
   </thead>
   <tbody>
     <tr>
-      <td>3</td>
+      <td>4</td>
       <td>Biography</td>
       <td>6.940876</td>
     </tr>
     <tr>
-      <td>18</td>
+      <td>6</td>
       <td>History</td>
       <td>6.908065</td>
     </tr>
     <tr>
-      <td>12</td>
+      <td>10</td>
       <td>Music</td>
       <td>6.889474</td>
     </tr>
     <tr>
-      <td>19</td>
+      <td>18</td>
       <td>War</td>
       <td>6.886957</td>
     </tr>
     <tr>
-      <td>8</td>
+      <td>20</td>
       <td>Sport</td>
       <td>6.855556</td>
     </tr>
@@ -6233,28 +6239,67 @@ df_rate_mean.head()
 
 
 ```python
+genre_order = list(df_rate_mean['genre'])
+genre_order
+```
+
+
+
+
+    ['Biography',
+     'History',
+     'Music',
+     'War',
+     'Sport',
+     'Musical',
+     'Animation',
+     'Drama',
+     'Family',
+     'Romance',
+     'Documentary',
+     'Crime',
+     'Sci-Fi',
+     'Adventure',
+     'Comedy',
+     'Mystery',
+     'News',
+     'Thriller',
+     'Action',
+     'Western',
+     'Fantasy',
+     'Horror']
+
+
+
+
+```python
 # Graph genres vs rating
 
 # Create graph to show which genres gross more in the box office
 fig, axs = plt.subplots(figsize=(24,10), ncols=2)
 
 # Mean of Average votes per genre
-ax_rate = sns.barplot(y='vote_average', x='genre', data=df_rate_mean, ax=axs[0])
+ax_rate = sns.barplot(y='vote_average', x='genre', data=df_rate_mean, ax=axs[0], 
+                      order=genre_order)
 ax_rate.set_title('Mean of Rating per Genre')
 ax_rate.set_xticklabels(df_rate_mean['genre'], rotation=45, ha='right')
 ax_rate.set_ylabel('Mean')
 ax_rate.set_xlabel('Genres')
 
 # Box Plot of Average Vote per genre
-ax_box_rate = sns.boxplot(data=df_rate_box, ax=axs[1])
+ax_box_rate = sns.boxplot(data=df_rate_box, ax=axs[1], order=genre_order)
 ax_box_rate.set_title('Average Vote per Movie')
-ax_box_rate.set_xticklabels(df_rate_box, rotation=45, ha='right')
+ax_box_rate.set_xticklabels(genre_order, rotation=45, ha='right')
 ax_box_rate.set_ylabel('Average Vote')
 ax_box_rate.set_xlabel('Genres');
+
+
+# Save plot as png
+plt.savefig('plots/rate_subplots.png', transparent=True, bbox_inches='tight')
 ```
 
 
-![png](student_files/student_87_0.png)
+![png](student_files/student_89_0.png)
 
 
 #### Look at the Best Picture Nominees from the last 10 years
@@ -6607,26 +6652,26 @@ genres_list_bp
 
 
 
-    ['Mystery',
-     'Family',
-     'Action',
-     'Animation',
-     'Musical',
-     'Sport',
-     'Thriller',
-     'Romance',
-     'History',
-     'Biography',
-     'Comedy',
-     'Western',
-     'War',
-     'Crime',
-     'Music',
+    ['Sport',
      'Drama',
-     'Horror',
-     'Sci-Fi',
+     'Romance',
      'Adventure',
-     'Fantasy']
+     'Animation',
+     'Family',
+     'Fantasy',
+     'Crime',
+     'Comedy',
+     'Thriller',
+     'Musical',
+     'Music',
+     'Biography',
+     'Horror',
+     'Action',
+     'Sci-Fi',
+     'War',
+     'Mystery',
+     'History',
+     'Western']
 
 
 
@@ -6671,16 +6716,16 @@ df_bp2010s.head(2)
       <th>Genres</th>
       <th>Num Votes</th>
       <th>...</th>
-      <th>Comedy</th>
-      <th>Western</th>
-      <th>War</th>
-      <th>Crime</th>
+      <th>Musical</th>
       <th>Music</th>
-      <th>Drama</th>
+      <th>Biography</th>
       <th>Horror</th>
+      <th>Action</th>
       <th>Sci-Fi</th>
-      <th>Adventure</th>
-      <th>Fantasy</th>
+      <th>War</th>
+      <th>Mystery</th>
+      <th>History</th>
+      <th>Western</th>
     </tr>
   </thead>
   <tbody>
@@ -6699,10 +6744,10 @@ df_bp2010s.head(2)
       <td>...</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
       <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -6726,7 +6771,7 @@ df_bp2010s.head(2)
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
+      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -6764,50 +6809,32 @@ count_bp
 
 
 
-    {'Mystery': 5,
-     'Family': 3,
-     'Action': 9,
-     'Animation': 1,
-     'Musical': 2,
-     'Sport': 3,
-     'Thriller': 19,
-     'Romance': 16,
-     'History': 16,
-     'Biography': 31,
-     'Comedy': 21,
-     'Western': 4,
-     'War': 11,
-     'Crime': 10,
-     'Music': 6,
+    {'Sport': 3,
      'Drama': 81,
-     'Horror': 1,
-     'Sci-Fi': 7,
+     'Romance': 16,
      'Adventure': 13,
-     'Fantasy': 7}
+     'Animation': 1,
+     'Family': 3,
+     'Fantasy': 7,
+     'Crime': 10,
+     'Comedy': 21,
+     'Thriller': 19,
+     'Musical': 2,
+     'Music': 6,
+     'Biography': 31,
+     'Horror': 1,
+     'Action': 9,
+     'Sci-Fi': 7,
+     'War': 11,
+     'Mystery': 5,
+     'History': 16,
+     'Western': 4}
 
 
-
-
-```python
-# # Create a dict of the genres
-# genre_dict_bp = {}
-# for genre in genres_list_bp:
-# #     print(genre)
-#     try:
-#         temp = df_bp2010s.groupby(genre).get_group(True)['Title']
-#         genre_dict_bp[genre] = temp.reset_index()
-#     except:
-#         print(genre)
-# genre_dict_bp
-```
 
 
 ```python
 # Create Dataframe in it
-# genre_dict_bp2 = {}
-# for genre in genres_list_bp:
-#     genre_dict_bp2[genre] = genre_dict_bp[genre]['Title']
-
 
 df_count_bp = pd.DataFrame(count_bp, index=[0])
 df_count_bp.head()
@@ -6834,51 +6861,51 @@ df_count_bp.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Mystery</th>
-      <th>Family</th>
-      <th>Action</th>
-      <th>Animation</th>
-      <th>Musical</th>
       <th>Sport</th>
-      <th>Thriller</th>
-      <th>Romance</th>
-      <th>History</th>
-      <th>Biography</th>
-      <th>Comedy</th>
-      <th>Western</th>
-      <th>War</th>
-      <th>Crime</th>
-      <th>Music</th>
       <th>Drama</th>
-      <th>Horror</th>
-      <th>Sci-Fi</th>
+      <th>Romance</th>
       <th>Adventure</th>
+      <th>Animation</th>
+      <th>Family</th>
       <th>Fantasy</th>
+      <th>Crime</th>
+      <th>Comedy</th>
+      <th>Thriller</th>
+      <th>Musical</th>
+      <th>Music</th>
+      <th>Biography</th>
+      <th>Horror</th>
+      <th>Action</th>
+      <th>Sci-Fi</th>
+      <th>War</th>
+      <th>Mystery</th>
+      <th>History</th>
+      <th>Western</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>0</td>
-      <td>5</td>
       <td>3</td>
-      <td>9</td>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>19</td>
-      <td>16</td>
-      <td>16</td>
-      <td>31</td>
-      <td>21</td>
-      <td>4</td>
-      <td>11</td>
-      <td>10</td>
-      <td>6</td>
       <td>81</td>
-      <td>1</td>
-      <td>7</td>
+      <td>16</td>
       <td>13</td>
+      <td>1</td>
+      <td>3</td>
       <td>7</td>
+      <td>10</td>
+      <td>21</td>
+      <td>19</td>
+      <td>2</td>
+      <td>6</td>
+      <td>31</td>
+      <td>1</td>
+      <td>9</td>
+      <td>7</td>
+      <td>11</td>
+      <td>5</td>
+      <td>16</td>
+      <td>4</td>
     </tr>
   </tbody>
 </table>
@@ -6888,21 +6915,31 @@ df_count_bp.head()
 
 
 ```python
+# Set context back to look better on a presentation
+sns.set_context("notebook")
+```
+
+
+```python
 # Graph the genre count of Best Picture Nominee of the last 10 years
 ax_bp = sns.barplot(data=df_count_bp)
 ax_bp.set_title('Number of Nominated Movies Based on Genre')
 ax_bp.set_xticklabels(df_count_bp, rotation=45, ha='right')
 ax_bp.set_ylabel('Number of Films')
 ax_bp.set_xlabel('Genres');
+
+
+# Save plot as png
+plt.savefig('plots/bp_genre.png', transparent=True, bbox_inches='tight')
 ```
 
 
-![png](student_files/student_101_0.png)
+![png](student_files/student_103_0.png)
 
 
 #### Interpetations
-- Looking at the average votes, the genre doesn't make much as a difference, so the quality of movie does not depend on genre.
-- Looking at Best Picture Nominees, Dramas are overwhelming nomiated. Biographical Drama would seem to have the highest chance of being nominated.
+- Looking at the average votes, the genre doesn't make much as a difference, but History and Biography movies seem to have slightly better ratings. This suggests a Biopic could help legitimize Microsoft in the industry.
+- Looking at Best Picture Nominees, Dramas are overwhelming nominated. Biographical Drama would seem to have the highest chance of being nominated.
 
 ### Home release vs Theater release?
 
@@ -6949,23 +6986,23 @@ page_chart
     <tr><th>Year</th><th>Tickets Sold</th><th>Total Box Office</th><th>Total Inflation<br/>Adjusted Box Office</th><th>Average<br/>Ticket Price</th></tr>
     <tr>
     <td class="data"><a href="/market/2020/summary">2020</a></td>
-    <td class="data"><i>460,096,302</i></td>
-    <td class="data"><i>$4,191,477,314</i></td>
-    <td class="data"><i>$4,191,477,314</i></td>
+    <td class="data"><i>436,014,022</i></td>
+    <td class="data"><i>$3,972,087,745</i></td>
+    <td class="data"><i>$3,972,087,745</i></td>
     <td class="data">$9.11</td>
     </tr>
     <tr>
     <td class="data"><a href="/market/2019/summary">2019</a></td>
-    <td class="data">1,239,254,735</td>
+    <td class="data">1,239,254,734</td>
     <td class="data">$11,289,613,403</td>
-    <td class="data">$11,289,613,497</td>
+    <td class="data">$11,289,613,496</td>
     <td class="data">$9.11</td>
     </tr>
     <tr>
     <td class="data"><a href="/market/2018/summary">2018</a></td>
-    <td class="data">1,311,323,188</td>
+    <td class="data">1,311,323,187</td>
     <td class="data">$11,946,156,764</td>
-    <td class="data">$11,946,156,943</td>
+    <td class="data">$11,946,156,942</td>
     <td class="data">$9.11</td>
     </tr>
     <tr>
@@ -7019,9 +7056,9 @@ page_chart
     </tr>
     <tr>
     <td class="data"><a href="/market/2010/summary">2010</a></td>
-    <td class="data">1,328,549,023</td>
+    <td class="data">1,328,549,022</td>
     <td class="data">$10,482,254,025</td>
-    <td class="data">$12,103,081,605</td>
+    <td class="data">$12,103,081,596</td>
     <td class="data">$7.89</td>
     </tr>
     <tr>
@@ -7173,25 +7210,25 @@ df_tickets
     <tr>
       <td>0</td>
       <td>2020</td>
-      <td>460096302</td>
-      <td>$4,191,477,314</td>
-      <td>$4,191,477,314</td>
+      <td>436014022</td>
+      <td>$3,972,087,745</td>
+      <td>$3,972,087,745</td>
       <td>$9.11</td>
     </tr>
     <tr>
       <td>1</td>
       <td>2019</td>
-      <td>1239254735</td>
+      <td>1239254734</td>
       <td>$11,289,613,403</td>
-      <td>$11,289,613,497</td>
+      <td>$11,289,613,496</td>
       <td>$9.11</td>
     </tr>
     <tr>
       <td>2</td>
       <td>2018</td>
-      <td>1311323188</td>
+      <td>1311323187</td>
       <td>$11,946,156,764</td>
-      <td>$11,946,156,943</td>
+      <td>$11,946,156,942</td>
       <td>$9.11</td>
     </tr>
     <tr>
@@ -7253,9 +7290,9 @@ df_tickets
     <tr>
       <td>10</td>
       <td>2010</td>
-      <td>1328549023</td>
+      <td>1328549022</td>
       <td>$10,482,254,025</td>
-      <td>$12,103,081,605</td>
+      <td>$12,103,081,596</td>
       <td>$7.89</td>
     </tr>
     <tr>
@@ -7389,20 +7426,30 @@ df_tickets
 # Graph ticket Sold though the years
 ax_ts = sns.lineplot(x='Year', y='Tickets Sold', data=df_tickets)
 ax_ts.set_title('Tickets Sold through the Years')
-ax_ts.set_ylabel('Number of Films')
-;
+ax_ts.set_ylabel('Number of Tickets Sold')
+
+
+# Save plot as png
+plt.savefig('plots/ticket_sales.png', transparent=True);
 ```
 
 
-
-
-    ''
-
-
-
-
-![png](student_files/student_109_1.png)
+![png](student_files/student_111_0.png)
 
 
 #### Interpetation
 - Even before the Pandemic, tickets sales have been steadily decreasing.  Looking into alternate distribution will likely be beneficial for the future especially with the future of theaters questionably after the pandemic.
+
+## Final Conclusions
+
+To recap what we saw from our data anaylsis and what our recommendations are:
+
+- Create your own nostalgia creating, money-making series. Plant the seeds to reap in 5 to 10 years.
+- Find the next "Harry Potter," "Lord of the Rings"
+- Find the next big directors.
+- The top grossing genres: Adventure, Action, Drama, Animation, and Comedy movies do the best in the box office. 
+- Look into creating an animation studio
+- History and Biography movies have slightly better ratings. This suggests a Biopic could help legitimize Microsoft in the industry.
+- Looking at Best Picture Nominees, Dramas are overwhelming nominated. Biographical Drama would seem to have the highest chance of being nominated.
+- Look into alternate distribution with the future of theaters questionably after the pandemic.
+
